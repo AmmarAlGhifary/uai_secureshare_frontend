@@ -3,7 +3,7 @@
 import { AuthError } from "next-auth";
 import { signIn, signOut } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { GlobalApiCall } from "@/components/ui/utils/GlobalApiCalls";
+import { GlobalApiCall } from "@/components/utils/GlobalApiCalls";
 
 const API_BASE_URL = process.env.API_BASE_URL;
 

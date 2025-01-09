@@ -1,7 +1,7 @@
 "use server";
 
-import { withActionHandler } from "@/components/ui/utils/ActionUtils";
-import { GlobalApiCall } from "@/components/ui/utils/GlobalApiCalls";
+import { withActionHandler } from "@/components/utils/ActionUtils";
+import { GlobalApiCall } from "@/components/utils/GlobalApiCalls";
 
 const API_BASE_URL = process.env.API_BASE_URL;
 
