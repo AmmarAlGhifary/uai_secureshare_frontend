@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const nameUpdateSchea = z.object ({
+export const nameUpdateSchema = z.object ({
     name: z.string().min(1, {
         message: "Name is required"
     }),
