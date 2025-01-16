@@ -1,43 +1,44 @@
-import { useCurrentUserServer } from "@/hooks/use-curent-user-server"
-import { RedirectError } from "./ErrorUtils"; 
+import { useCurrentUserServer } from "@/hooks/use-curent-user-server";
+import { RedirectError } from "./ErrorUtils";
 
-interface GlobalApiCallProps {
-    url: string;
-    options?: RequestInit;
+interface GlobalAPICallProps {
+  url: string;
+  options?: RequestInit;
 }
 
-export const GlobalApiCall = async ({ 
-    url,
-    options = {},
-}: GlobalApiCallProps) => {
-    try {
-        const session = await useCurrentUserServer();
-        
-        const token = session?.accessToken ?? null;
-        const response = await fetch(url, {
-            ...options,
-            headers: {
-                "Content-Type": "application/json",
-                ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                ...options.headers,
-                Authorization: `Bearer ${token}`,
-            },
-        });
+export const GlobalApiCall = async ({
+  url,
+  options = {},
+}: GlobalAPICallProps) => {
+  try {
+    const session = await useCurrentUserServer();
 
-        if (response.status ==- 401) {
-            throw new RedirectError(302, "/logout", "Session Sudah Habis");
-        }
+    const token = session?.accessToken ?? null;
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(
-                `HTTP error! status: ${response.status}, message: ${errorText}`
-            );
-        }
+    const response = await fetch(url, {
+      ...options,
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...options.headers,
+      },
+    });
 
-        return await response.json();
-    } catch (error) {
-        console.error ("fetch error", error);
-        throw error;
+    if (response.status === 401) {
+      throw new RedirectError(302, "/logout", "session expired");
     }
-}
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `HTTP error! status: ${response.status}, message: ${errorText}`
+      );
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("fetch Error:", error);
+    throw error;
+  }
+};

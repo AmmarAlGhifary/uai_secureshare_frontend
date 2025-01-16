@@ -1,19 +1,19 @@
-import { redirect } from 'next/navigation';
-import { HandleApiError } from './HandleApiErrors';
+import { redirect } from "next/navigation";
+import { handleApiError } from "./HandleApiErrors";
 
-export const withActionHandler = async <T>(action : () => Promise<T>) => {
-    try {
-        return await action();
-    } catch (error) {
-        const { status, message, location } = HandleApiError(error);
-        
-        if (location) {
-            redirect(location);
-        }
+export const withActionHandler = async <T>(action: () => Promise<T>) => {
+  try {
+    return await action();
+  } catch (error) {
+    const { status, message, location } = handleApiError(error);
 
-        return {
-            status,
-            message,
-        };
+    if (location) {
+      redirect(location);
     }
+
+    return {
+      status,
+      message,
+    };
+  }
 };
