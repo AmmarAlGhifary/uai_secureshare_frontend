@@ -63,7 +63,7 @@ export const RegisterForm = () => {
                         <FormControl>
                           <Input
                             {...field}
-                            placeholder="john doe"
+                            placeholder="Ammar Al Ghifary"
                             type="text"
                             disabled={isPanding}
                           />
@@ -83,7 +83,7 @@ export const RegisterForm = () => {
                         <FormControl>
                           <Input
                             {...field}
-                            placeholder="john.doe@example.com"
+                            placeholder="mahasiswaalazhar@example.com"
                             type="email"
                             disabled={isPanding}
                           />

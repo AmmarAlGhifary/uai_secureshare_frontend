@@ -24,7 +24,7 @@ export const AuthCard = ({
     <Card className={cn("w-[400px] shadow-md",  className)}>
       <CardHeader>
         <div className="w-full flex flex-col gap-y-4 items-center justify-center">
-          <h1 className="text-3xl font-semibold">🔐SecureShare</h1>
+          <h1 className="text-3xl font-semibold">🔐 UAI Secure Share</h1>
           <p className="text-muted-foreground text-sm">{headerLabel}</p>
         </div>
       </CardHeader>

@@ -58,7 +58,6 @@ export const LoginForm = () => {
                                             placeholder="mahasiswaalazhar@example.com"
                                             type="email"
                                             disabled={isPanding}
-                                            enablePasswordToggle
                                         />
                                     </FormControl>
                                     <FormMessage />
