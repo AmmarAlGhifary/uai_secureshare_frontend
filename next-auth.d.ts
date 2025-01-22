@@ -1,17 +1,17 @@
 import { DefaultSession } from "next-auth";
 
-// Extend the DefaultSession from the user with access_token
+// Extend the DefaultSession["user"] type with accessToken
 export type ExtendedUser = DefaultSession["user"] & {
-    accessToken : String;
+    accessToken: string;
 }
 
 declare module "next-auth" {
-    // Extend the user interface with access_token
+    // Extend the User interface with accessToken
     interface User {
-        token: String;
+        token: string;
     }
 
-    // Extend session interface with all the extender user
+    // Extend the Session interface with the extended User
     interface Session {
         user: ExtendedUser;
     }

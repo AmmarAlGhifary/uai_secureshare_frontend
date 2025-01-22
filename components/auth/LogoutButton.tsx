@@ -3,7 +3,7 @@
 import { Logout } from "@/action/authHandler";
 
 interface LogoutButtonProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export const LogoutButton = ({ children }: LogoutButtonProps) => {

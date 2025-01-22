@@ -1,8 +1,8 @@
 import * as z from "zod";
 
-export const nameUpdateSchema = z.object ({
+export const nameUpdateSchema = z.object({
     name: z.string().min(1, {
-        message: "Name is required"
+        message: 'Name is required'
     }),
     email: z.string()
 })
@@ -16,6 +16,6 @@ export const passwordChangeSchema = z.object({
     new_password_confirm: z.string()
     .min(1, { message: "Password confirmation is required" }),
 }).refine((data) => data.new_password === data.new_password_confirm, {
-    message: "Password do not match",
+    message: "Passwords do not match",
     path: ["new_password_confirm"]
-})
+});

@@ -8,6 +8,7 @@ export default function Home() {
 
   const handleClick = () => {
       setIsLoading(true);
+      // Simulate a network request
       setTimeout(() => {
           setIsLoading(false);
       }, 2000);

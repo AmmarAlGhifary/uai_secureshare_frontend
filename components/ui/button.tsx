@@ -1,12 +1,11 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-
-import { cn } from "@/lib/utils"
-import { Loader2 } from "lucide-react"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react"; // Assuming you are using this for the loader icon
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -33,42 +32,56 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-  isLoading?: boolean;
-
+  asChild?: boolean;
+  isLoading?: boolean; // Add isLoading prop
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, isLoading = false, children, ...props }, ref) => {
-    if(asChild){
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      isLoading = false,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    if (asChild) {
+      // When asChild is true, use Slot and pass only the children
       return (
         <Slot
-        className={cn(buttonVariants({variant, size, className}))}
-        ref={ref}
-        {...props}
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
         >
-        {children}
+          {children}
         </Slot>
-      )
-    } else{
+      );
+    } else {
+      // When asChild is false, use button and render Loader2 if loading
       return (
         <button
-        className={cn(buttonVariants({variant, size, className}))}
-        ref={ref}
-        disabled={isLoading || props.disabled}
-            {...props}>
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          disabled={isLoading || props.disabled}
+          {...props}
+        >
           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {children}
         </button>
-      )
+      );
     }
   }
-)
-Button.displayName = "Button"
+);
 
-export { Button, buttonVariants }
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
