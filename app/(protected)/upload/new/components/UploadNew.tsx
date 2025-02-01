@@ -55,7 +55,7 @@ const emailFormSchema = z.object({
         ),
       "Only images (jpg, jpeg, png) and PDF files are allowed"
     ).refine(
-      (file) => file && file.size <= 4 * 1024 * 1024, // 4MB in bytes
+      (file) => file && file.size <= 100 * 1024 * 1024, // 4MB in bytes
       { message: "File size must be less than or equal to 4MB" }
     ),
 });
@@ -258,7 +258,7 @@ export const UploadNew = ({ token }: { token: string | null }) => {
                   <FormControl>
                     <Input
                       type="file"
-                      accept=".jpg,.jpeg,.png,.pdf"
+                      accept=".jpg,.jpeg,.png,.pdf,.csv"
                       onChange={handleFileUplaod}
                       disabled={!isFormFilled || isPanding}
                     />

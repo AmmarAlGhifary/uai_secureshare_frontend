@@ -65,7 +65,7 @@ export const RegisterForm = () => {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="john doe"
+                        placeholder="Mahasiswa Al Azhar"
                         type="text"
                         disabled={isPanding}
                       />
@@ -85,7 +85,7 @@ export const RegisterForm = () => {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="john.doe@example.com"
+                        placeholder="mahasiswa@student.id"
                         type="email"
                         disabled={isPanding}
                       />

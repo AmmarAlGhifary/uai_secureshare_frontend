@@ -11,7 +11,7 @@ export const Header = () => {
   return (
     <header className="flex justify-between items-center p-3 bg-slate-900 text-white">
       <div className="text-2xl font-bold">
-        <Link href="/">SecureShare</Link>
+        <Link href="/">🔐UAI SecureShare</Link>
       </div>
       <nav className="space-x-4">
         <Link
